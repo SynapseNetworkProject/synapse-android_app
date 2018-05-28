@@ -31,5 +31,8 @@ install:
 script:
   - ./gradlew build
 
-after_success:
-  - bash <(curl -s https://copilot.blackducksoftware.com/ci/travis/scripts/upload)
+#after_success:
+#  - bash <(curl -s https://copilot.blackducksoftware.com/ci/travis/scripts/upload)
+
+before_install:
+- yes | sdkmanager "platforms;android-27"
