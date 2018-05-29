@@ -8,9 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import tech.synapsenetwork.app.R;
 import tech.synapsenetwork.app.entity.Wallet;
 import tech.synapsenetwork.app.ui.widget.OnDepositClickListener;
+import tech.synapsenetwork.app.R;
 
 import static tech.synapsenetwork.app.Constants.CHANGELLY_REF_ID;
 import static tech.synapsenetwork.app.Constants.COINBASE_WIDGET_CODE;

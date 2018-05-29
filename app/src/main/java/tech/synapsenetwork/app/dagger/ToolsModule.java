@@ -3,7 +3,7 @@ package tech.synapsenetwork.app.dagger;
 import android.content.Context;
 
 import com.google.gson.Gson;
-import tech.synapsenetwork.app.App;
+import tech.synapsenetwork.app.Application;
 import tech.synapsenetwork.app.repository.PasswordStore;
 import tech.synapsenetwork.app.repository.TrustPasswordStore;
 import tech.synapsenetwork.app.util.LogInterceptor;
@@ -17,7 +17,7 @@ import okhttp3.OkHttpClient;
 @Module
 class ToolsModule {
 	@Provides
-	Context provideContext(App application) {
+	Context provideContext(Application application) {
 		return application.getApplicationContext();
 	}
 

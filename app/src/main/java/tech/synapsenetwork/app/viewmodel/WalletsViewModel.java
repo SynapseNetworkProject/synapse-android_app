@@ -15,8 +15,8 @@ import tech.synapsenetwork.app.interact.ExportWalletInteract;
 import tech.synapsenetwork.app.interact.FetchWalletsInteract;
 import tech.synapsenetwork.app.interact.FindDefaultWalletInteract;
 import tech.synapsenetwork.app.interact.SetDefaultWalletInteract;
-import tech.synapsenetwork.app.router.ImportWalletRouter;
-import tech.synapsenetwork.app.router.TransactionsRouter;
+import tech.synapsenetwork.app.Router.ImportWalletRouter;
+import tech.synapsenetwork.app.Router.TransactionsRouter;
 
 import static tech.synapsenetwork.app.Constants.IMPORT_REQUEST_CODE;
 

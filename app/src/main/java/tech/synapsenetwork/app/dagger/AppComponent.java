@@ -1,6 +1,6 @@
 package tech.synapsenetwork.app.dagger;
 
-import tech.synapsenetwork.app.App;
+import tech.synapsenetwork.app.Application;
 
 import javax.inject.Singleton;
 
@@ -19,8 +19,8 @@ public interface AppComponent {
 	@Component.Builder
 	interface Builder {
 		@BindsInstance
-		Builder application(App app);
+		Builder application(Application application);
 		AppComponent build();
 	}
-	void inject(App app);
+	void inject(Application application);
 }

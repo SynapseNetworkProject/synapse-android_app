@@ -4,7 +4,7 @@ import tech.synapsenetwork.app.interact.FindDefaultNetworkInteract;
 import tech.synapsenetwork.app.interact.FindDefaultWalletInteract;
 import tech.synapsenetwork.app.repository.EthereumNetworkRepositoryType;
 import tech.synapsenetwork.app.repository.WalletRepositoryType;
-import tech.synapsenetwork.app.router.ExternalBrowserRouter;
+import tech.synapsenetwork.app.Router.ExternalBrowserRouter;
 import tech.synapsenetwork.app.viewmodel.TransactionDetailViewModelFactory;
 
 import dagger.Module;

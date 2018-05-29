@@ -81,7 +81,7 @@
     <string name="message_this_is_your_address">My public Ethereum wallet address</string>
     <string name="min_pwd_length">Password must be at least %d chars long</string>
     <string name="backup_warning_text">
-        Since only you control your money, you\'ll need to save your backup keystore in case this app is deleted. \n\n
+        Since only you control your money, you\'ll need to save your backup keystore in case this application is deleted. \n\n
         Your wallet is never saved to cloud storage or standard device backups.
     </string>
     <string name="message_no_backup">No backup, no Ethereum.</string>
@@ -115,7 +115,7 @@
     <string name="unable_unblock_device">Unable to unlock the device.</string>
     <string name="skip">Skip</string>
     <string name="root_title">DEVICE SECURITY COMPROMISED</string>
-    <string name="root_body">Any \'rooted\' app can access Trust\'s keychain data and steal your wallet! Wipe this wallet immediately and restore on a secure device.</string>
+    <string name="root_body">Any \'rooted\' application can access Trust\'s keychain data and steal your wallet! Wipe this wallet immediately and restore on a secure device.</string>
     <string name="gas_fee_title">Gas Fee (Gwei)</string>
     <string name="transfer">Transfer %s</string>
     <string name="action_buy">Buy</string>
@@ -159,7 +159,7 @@
     <string name="title_dialog_deposit">How would you like to buy?</string>
     <!-- Dialog messages-->
     <string name="dialog_message">Enter the password to encrypt your wallet</string>
-    <string name="dialog_message_unrecoverable_message">If this device is replaced or this app is deleted, neither you nor Trust Wallet can recover your funds without a backup.</string>
+    <string name="dialog_message_unrecoverable_message">If this device is replaced or this application is deleted, neither you nor Trust Wallet can recover your funds without a backup.</string>
     <string name="toast_message_wallet_imported">The wallet was imported</string>
     <string name="toast_message_wallet_exported">A backup was created</string>
     <string name="toast_qr_code_no_address">QR code doesn\'t contain valid address</string>

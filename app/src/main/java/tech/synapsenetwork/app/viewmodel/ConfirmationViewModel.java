@@ -10,7 +10,7 @@ import tech.synapsenetwork.app.interact.CreateTransactionInteract;
 import tech.synapsenetwork.app.interact.FetchGasSettingsInteract;
 import tech.synapsenetwork.app.interact.FindDefaultWalletInteract;
 import tech.synapsenetwork.app.repository.TokenRepository;
-import tech.synapsenetwork.app.router.GasSettingsRouter;
+import tech.synapsenetwork.app.Router.GasSettingsRouter;
 
 import java.math.BigInteger;
 

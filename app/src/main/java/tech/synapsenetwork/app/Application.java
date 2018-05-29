@@ -12,7 +12,7 @@ import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
 import io.realm.Realm;
 
-public class App extends MultiDexApplication implements HasActivityInjector {
+public class Application extends MultiDexApplication implements HasActivityInjector {
 
 	@Inject
 	DispatchingAndroidInjector<Activity> dispatchingAndroidInjector;

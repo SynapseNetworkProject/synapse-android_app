@@ -2,7 +2,7 @@ package tech.synapsenetwork.app.dagger;
 
 import tech.synapsenetwork.app.interact.FindDefaultWalletInteract;
 import tech.synapsenetwork.app.repository.WalletRepositoryType;
-import tech.synapsenetwork.app.router.ManageWalletsRouter;
+import tech.synapsenetwork.app.Router.ManageWalletsRouter;
 
 import dagger.Module;
 import dagger.Provides;

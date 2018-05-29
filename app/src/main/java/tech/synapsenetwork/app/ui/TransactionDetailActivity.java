@@ -10,8 +10,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-
-import tech.synapsenetwork.app.R;
 import tech.synapsenetwork.app.entity.NetworkInfo;
 import tech.synapsenetwork.app.entity.Transaction;
 import tech.synapsenetwork.app.entity.Wallet;
@@ -28,6 +26,7 @@ import java.util.Locale;
 import javax.inject.Inject;
 
 import dagger.android.AndroidInjection;
+import tech.synapsenetwork.app.R;
 
 import static tech.synapsenetwork.app.Constants.Key.TRANSACTION;
 

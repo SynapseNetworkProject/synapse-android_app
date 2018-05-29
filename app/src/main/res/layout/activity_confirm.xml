@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:application="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -8,7 +8,7 @@
     <include layout="@layout/layout_app_bar" />
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:application="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp">
@@ -19,14 +19,14 @@
             android:layout_height="wrap_content"
             android:text="@string/dummy_transaction_value"
             android:textAppearance="?android:textAppearanceLarge"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            application:layout_constraintEnd_toEndOf="parent"
+            application:layout_constraintStart_toStartOf="parent" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@+id/text_value">
+            application:layout_constraintTop_toBottomOf="@+id/text_value">
 
             <TextView
                 android:id="@+id/label_from"
@@ -40,10 +40,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/normal_margin"
                 android:layout_marginTop="@dimen/small_margin"
-                android:textIsSelectable="true"
                 android:text="@string/dummy"
-                android:textSize="12sp"
-                android:textAppearance="?attr/textAppearanceListItemSmall" />
+                android:textAppearance="?attr/textAppearanceListItemSmall"
+                android:textIsSelectable="true"
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/label_to"
@@ -57,10 +57,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/normal_margin"
                 android:layout_marginTop="@dimen/small_margin"
-                android:textIsSelectable="true"
                 android:text="@string/dummy"
-                android:textSize="12sp"
-                android:textAppearance="?attr/textAppearanceListItemSmall" />
+                android:textAppearance="?attr/textAppearanceListItemSmall"
+                android:textIsSelectable="true"
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/label_gas_price"
@@ -74,10 +74,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/normal_margin"
                 android:layout_marginTop="@dimen/small_margin"
-                android:textIsSelectable="true"
                 android:text="@string/dummy"
-                android:textSize="12sp"
-                android:textAppearance="?attr/textAppearanceListItemSmall" />
+                android:textAppearance="?attr/textAppearanceListItemSmall"
+                android:textIsSelectable="true"
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/label_gas_limit"
@@ -91,10 +91,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/normal_margin"
                 android:layout_marginTop="@dimen/small_margin"
-                android:textIsSelectable="true"
                 android:text="@string/dummy"
-                android:textSize="12sp"
-                android:textAppearance="?attr/textAppearanceListItemSmall" />
+                android:textAppearance="?attr/textAppearanceListItemSmall"
+                android:textIsSelectable="true"
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/label_network_fee"
@@ -108,10 +108,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/normal_margin"
                 android:layout_marginTop="@dimen/small_margin"
-                android:textIsSelectable="true"
                 android:text="@string/dummy"
-                android:textSize="12sp"
-                android:textAppearance="?attr/textAppearanceListItemSmall" />
+                android:textAppearance="?attr/textAppearanceListItemSmall"
+                android:textIsSelectable="true"
+                android:textSize="12sp" />
 
         </LinearLayout>
 
@@ -121,7 +121,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/action_send"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            application:layout_constraintBottom_toBottomOf="parent" />
 
 
     </android.support.constraint.ConstraintLayout>

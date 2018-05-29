@@ -6,7 +6,7 @@ import android.content.Context;
 
 import tech.synapsenetwork.app.interact.AddTokenInteract;
 import tech.synapsenetwork.app.interact.FindDefaultWalletInteract;
-import tech.synapsenetwork.app.router.MyTokensRouter;
+import tech.synapsenetwork.app.Router.MyTokensRouter;
 
 public class AddTokenViewModel extends BaseViewModel {
 

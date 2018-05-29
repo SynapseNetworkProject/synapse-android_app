@@ -12,7 +12,7 @@ import tech.synapsenetwork.app.entity.Transaction;
 import tech.synapsenetwork.app.entity.Wallet;
 import tech.synapsenetwork.app.interact.FindDefaultNetworkInteract;
 import tech.synapsenetwork.app.interact.FindDefaultWalletInteract;
-import tech.synapsenetwork.app.router.ExternalBrowserRouter;
+import tech.synapsenetwork.app.Router.ExternalBrowserRouter;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 

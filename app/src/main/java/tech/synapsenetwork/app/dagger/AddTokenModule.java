@@ -4,7 +4,7 @@ import tech.synapsenetwork.app.interact.AddTokenInteract;
 import tech.synapsenetwork.app.interact.FindDefaultWalletInteract;
 import tech.synapsenetwork.app.repository.TokenRepositoryType;
 import tech.synapsenetwork.app.repository.WalletRepositoryType;
-import tech.synapsenetwork.app.router.MyTokensRouter;
+import tech.synapsenetwork.app.Router.MyTokensRouter;
 import tech.synapsenetwork.app.viewmodel.AddTokenViewModelFactory;
 
 import dagger.Module;

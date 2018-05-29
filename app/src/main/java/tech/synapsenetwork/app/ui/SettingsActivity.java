@@ -4,7 +4,7 @@ import android.app.Fragment;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import tech.synapsenetwork.app.router.TransactionsRouter;
+import tech.synapsenetwork.app.Router.TransactionsRouter;
 
 import javax.inject.Inject;
 

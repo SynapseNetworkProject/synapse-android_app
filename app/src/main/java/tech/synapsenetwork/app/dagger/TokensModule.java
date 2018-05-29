@@ -4,9 +4,9 @@ import tech.synapsenetwork.app.interact.FetchTokensInteract;
 import tech.synapsenetwork.app.interact.FindDefaultNetworkInteract;
 import tech.synapsenetwork.app.repository.EthereumNetworkRepositoryType;
 import tech.synapsenetwork.app.repository.TokenRepositoryType;
-import tech.synapsenetwork.app.router.AddTokenRouter;
-import tech.synapsenetwork.app.router.SendTokenRouter;
-import tech.synapsenetwork.app.router.TransactionsRouter;
+import tech.synapsenetwork.app.Router.AddTokenRouter;
+import tech.synapsenetwork.app.Router.SendTokenRouter;
+import tech.synapsenetwork.app.Router.TransactionsRouter;
 import tech.synapsenetwork.app.viewmodel.TokensViewModelFactory;
 
 import dagger.Module;

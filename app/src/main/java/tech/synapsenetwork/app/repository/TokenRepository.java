@@ -75,7 +75,7 @@ public class TokenRepository implements TokenRepositoryType {
                     .blockingGet();
             e.onNext(tokens);
 
-            updateTokenInfoCache(defaultNetwork, wallet);
+            //updateTokenInfoCache(defaultNetwork, wallet);
             tokens = tokenLocalSource.fetch(defaultNetwork, wallet)
                         .map(items -> {
                             int len = items.length;

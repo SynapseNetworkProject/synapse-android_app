@@ -7,9 +7,9 @@
 
 [<img src=https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png height="88">](https://play.google.com/store/apps/details?id=com.wallet.crypto.trustapp)
 
-Welcome to Trust's open source Android app!
+Welcome to Trust's open source Android application!
 
-Please read our post on why Android open source development harm our users: https://medium.com/@trustwallet/why-open-sourcing-android-app-could-be-a-harm-to-the-crypto-community-fb3ae1707dc6
+Please read our post on why Android open source development harm our users: https://medium.com/@trustwallet/why-open-sourcing-android-application-could-be-a-harm-to-the-crypto-community-fb3ae1707dc6
 
 Website: https://trustwalletapp.com
 

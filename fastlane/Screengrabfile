@@ -3,8 +3,8 @@
 app_package_name 'com.wallet.crypto.trustapp'
 # use_tests_in_packages ['your.screenshot.tests.package']
 
-app_apk_path 'app/build/outputs/apk/debug/app-debug.apk'
-tests_apk_path './app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk'
+app_apk_path 'application/build/outputs/apk/debug/application-debug.apk'
+tests_apk_path './application/build/outputs/apk/androidTest/debug/application-debug-androidTest.apk'
 
 locales ['en-US']
 
