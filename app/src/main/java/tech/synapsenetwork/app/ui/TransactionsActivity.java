@@ -21,6 +21,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import tech.synapsenetwork.app.Constants;
+import tech.synapsenetwork.app.R;
 import tech.synapsenetwork.app.entity.ErrorEnvelope;
 import tech.synapsenetwork.app.entity.NetworkInfo;
 import tech.synapsenetwork.app.entity.Transaction;
@@ -58,10 +59,10 @@ public class TransactionsActivity extends BaseNavigationActivity implements View
         setContentView(tech.synapsenetwork.app.R.layout.activity_transactions);
 
         toolbar();
-        //setTitle(getString(tech.synapsenetwork.app.R.string.unknown_balance_with_symbol));
+        setTitle(getString(R.string.transactions));
         //setSubtitle("");
         initBottomNavigation();
-        dissableDisplayHomeAsUp();
+        //dissableDisplayHomeAsUp();
 
         adapter = new TransactionsAdapter(this::onTransactionClick);
         SwipeRefreshLayout refreshLayout = findViewById(tech.synapsenetwork.app.R.id.refresh_layout);

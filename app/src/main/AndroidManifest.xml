@@ -72,6 +72,9 @@
         <activity
             android:name="tech.synapsenetwork.app.ui.GasSettingsActivity"
             android:label="@string/title_send_settings" />
+        <activity
+            android:name="tech.synapsenetwork.app.ui.HomeActivity"
+            android:label="@string/title_home" />
 
         <meta-data
             android:name="io.fabric.ApiKey"

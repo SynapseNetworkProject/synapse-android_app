@@ -3,86 +3,68 @@ package tech.synapsenetwork.app.viewmodel;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.content.Context;
-import android.net.Uri;
-
-import tech.synapsenetwork.app.entity.NetworkInfo;
-import tech.synapsenetwork.app.entity.Transaction;
-import tech.synapsenetwork.app.entity.Wallet;
-import tech.synapsenetwork.app.interact.FetchTransactionsInteract;
-import tech.synapsenetwork.app.interact.FindDefaultNetworkInteract;
-import tech.synapsenetwork.app.interact.FindDefaultWalletInteract;
-import tech.synapsenetwork.app.interact.GetDefaultWalletBalance;
-import tech.synapsenetwork.app.router.ExternalBrowserRouter;
-import tech.synapsenetwork.app.router.ManageWalletsRouter;
-import tech.synapsenetwork.app.router.MyAddressRouter;
-import tech.synapsenetwork.app.router.MyTokensRouter;
-import tech.synapsenetwork.app.router.SendRouter;
-import tech.synapsenetwork.app.router.SettingsRouter;
-import tech.synapsenetwork.app.router.TransactionDetailRouter;
 
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
+import tech.synapsenetwork.app.entity.NetworkInfo;
+import tech.synapsenetwork.app.entity.Wallet;
+import tech.synapsenetwork.app.interact.FindDefaultNetworkInteract;
+import tech.synapsenetwork.app.interact.FindDefaultWalletInteract;
+import tech.synapsenetwork.app.interact.GetDefaultWalletBalance;
+import tech.synapsenetwork.app.router.ManageWalletsRouter;
+import tech.synapsenetwork.app.router.MyAddressRouter;
+import tech.synapsenetwork.app.router.MyTokensRouter;
+import tech.synapsenetwork.app.router.SendRouter;
+import tech.synapsenetwork.app.router.SettingsRouter;
 
-public class TransactionsViewModel extends BaseViewModel {
+public class HomeViewModel extends BaseViewModel {
+
     private static final long GET_BALANCE_INTERVAL = 8;
-    private static final long FETCH_TRANSACTIONS_INTERVAL = 10;
     private final MutableLiveData<NetworkInfo> defaultNetwork = new MutableLiveData<>();
     private final MutableLiveData<Wallet> defaultWallet = new MutableLiveData<>();
-    private final MutableLiveData<Transaction[]> transactions = new MutableLiveData<>();
     private final MutableLiveData<Map<String, String>> defaultWalletBalance = new MutableLiveData<>();
 
     private final FindDefaultNetworkInteract findDefaultNetworkInteract;
     private final FindDefaultWalletInteract findDefaultWalletInteract;
     private final GetDefaultWalletBalance getDefaultWalletBalance;
-    private final FetchTransactionsInteract fetchTransactionsInteract;
 
     private final ManageWalletsRouter manageWalletsRouter;
     private final SettingsRouter settingsRouter;
     private final SendRouter sendRouter;
-    private final TransactionDetailRouter transactionDetailRouter;
     private final MyAddressRouter myAddressRouter;
     private final MyTokensRouter myTokensRouter;
-    private final ExternalBrowserRouter externalBrowserRouter;
+
     private Disposable balanceDisposable;
     private Disposable transactionDisposable;
 
-    TransactionsViewModel(
+    HomeViewModel(
             FindDefaultNetworkInteract findDefaultNetworkInteract,
             FindDefaultWalletInteract findDefaultWalletInteract,
-            FetchTransactionsInteract fetchTransactionsInteract,
             GetDefaultWalletBalance getDefaultWalletBalance,
             ManageWalletsRouter manageWalletsRouter,
             SettingsRouter settingsRouter,
             SendRouter sendRouter,
-            TransactionDetailRouter transactionDetailRouter,
             MyAddressRouter myAddressRouter,
-            MyTokensRouter myTokensRouter,
-            ExternalBrowserRouter externalBrowserRouter) {
+            MyTokensRouter myTokensRouter) {
         this.findDefaultNetworkInteract = findDefaultNetworkInteract;
         this.findDefaultWalletInteract = findDefaultWalletInteract;
         this.getDefaultWalletBalance = getDefaultWalletBalance;
-        this.fetchTransactionsInteract = fetchTransactionsInteract;
         this.manageWalletsRouter = manageWalletsRouter;
         this.settingsRouter = settingsRouter;
         this.sendRouter = sendRouter;
-        this.transactionDetailRouter = transactionDetailRouter;
         this.myAddressRouter = myAddressRouter;
         this.myTokensRouter = myTokensRouter;
-        this.externalBrowserRouter = externalBrowserRouter;
     }
 
     @Override
     protected void onCleared() {
         super.onCleared();
 
-        if (transactionDisposable != null)
-            transactionDisposable.dispose();
-
-        if (balanceDisposable != null)
-            balanceDisposable.dispose();
+        transactionDisposable.dispose();
+        balanceDisposable.dispose();
     }
 
     public LiveData<NetworkInfo> defaultNetwork() {
@@ -93,9 +75,6 @@ public class TransactionsViewModel extends BaseViewModel {
         return defaultWallet;
     }
 
-    public LiveData<Transaction[]> transactions() {
-        return transactions;
-    }
 
     public LiveData<Map<String, String>> defaultWalletBalance() {
         return defaultWalletBalance;
@@ -108,24 +87,6 @@ public class TransactionsViewModel extends BaseViewModel {
                 .subscribe(this::onDefaultNetwork, this::onError);
     }
 
-    public void fetchTransactions() {
-        progress.postValue(true);
-        transactionDisposable = Observable.interval(0, FETCH_TRANSACTIONS_INTERVAL, TimeUnit.SECONDS)
-                .doOnNext(l ->
-                        disposable = fetchTransactionsInteract
-                                .fetch(defaultWallet.getValue()/*new Wallet("0x60f7a1cbc59470b74b1df20b133700ec381f15d3")*/)
-                                .subscribe(this::onTransactions, this::onError))
-                .subscribe();
-    }
-
-    public void getBalance() {
-        balanceDisposable = Observable.interval(0, GET_BALANCE_INTERVAL, TimeUnit.SECONDS)
-                .doOnNext(l -> getDefaultWalletBalance
-                        .get(defaultWallet.getValue())
-                        .subscribe(defaultWalletBalance::postValue, t -> {
-                        }))
-                .subscribe();
-    }
 
     private void onDefaultNetwork(NetworkInfo networkInfo) {
         defaultNetwork.postValue(networkInfo);
@@ -136,14 +97,9 @@ public class TransactionsViewModel extends BaseViewModel {
 
     private void onDefaultWallet(Wallet wallet) {
         defaultWallet.setValue(wallet);
-        //getBalance();
-        //fetchTransactions();
+        getBalance();
     }
 
-    private void onTransactions(Transaction[] transactions) {
-        progress.postValue(false);
-        this.transactions.postValue(transactions);
-    }
 
     public void showWallets(Context context) {
         manageWalletsRouter.open(context, false);
@@ -157,9 +113,6 @@ public class TransactionsViewModel extends BaseViewModel {
         sendRouter.open(context);
     }
 
-    public void showDetails(Context context, Transaction transaction) {
-        transactionDetailRouter.open(context, transaction);
-    }
 
     public void showMyAddress(Context context) {
         myAddressRouter.open(context, defaultWallet.getValue());
@@ -169,7 +122,14 @@ public class TransactionsViewModel extends BaseViewModel {
         myTokensRouter.open(context, defaultWallet.getValue());
     }
 
-    public void openDeposit(Context context, Uri uri) {
-        externalBrowserRouter.open(context, uri);
+    public void getBalance() {
+        balanceDisposable = Observable.interval(0, GET_BALANCE_INTERVAL, TimeUnit.SECONDS)
+                .doOnNext(l -> getDefaultWalletBalance
+                        .get(defaultWallet.getValue())
+                        .subscribe(defaultWalletBalance::postValue, t -> {
+                        }))
+                .subscribe();
     }
+
+
 }

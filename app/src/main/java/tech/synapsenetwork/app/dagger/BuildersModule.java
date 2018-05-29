@@ -3,6 +3,7 @@ package tech.synapsenetwork.app.dagger;
 import tech.synapsenetwork.app.ui.AddTokenActivity;
 import tech.synapsenetwork.app.ui.ConfirmationActivity;
 import tech.synapsenetwork.app.ui.GasSettingsActivity;
+import tech.synapsenetwork.app.ui.HomeActivity;
 import tech.synapsenetwork.app.ui.ImportWalletActivity;
 import tech.synapsenetwork.app.ui.MyAddressActivity;
 import tech.synapsenetwork.app.ui.SendActivity;
@@ -33,6 +34,10 @@ public abstract class BuildersModule {
 	@ActivityScope
 	@ContributesAndroidInjector(modules = TransactionsModule.class)
 	abstract TransactionsActivity bindTransactionsModule();
+
+	@ActivityScope
+	@ContributesAndroidInjector(modules = TransactionsModule.class)
+	abstract HomeActivity bindHomeModule();
 
     @ActivityScope
     @ContributesAndroidInjector(modules = TransactionDetailModule.class)

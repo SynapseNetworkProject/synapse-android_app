@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.core.CrashlyticsCore;
 import tech.synapsenetwork.app.entity.Wallet;
+import tech.synapsenetwork.app.router.HomeRouter;
 import tech.synapsenetwork.app.router.ManageWalletsRouter;
 import tech.synapsenetwork.app.router.TransactionsRouter;
 import tech.synapsenetwork.app.viewmodel.SplashViewModel;
@@ -42,7 +43,7 @@ public class SplashActivity extends AppCompatActivity {
         if (wallets.length == 0) {
             new ManageWalletsRouter().open(this, true);
         } else {
-            new TransactionsRouter().open(this, true);
+            new HomeRouter().open(this, true);
         }
     }
 
