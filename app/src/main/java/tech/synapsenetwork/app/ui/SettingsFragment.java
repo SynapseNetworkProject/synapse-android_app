@@ -16,7 +16,7 @@ import tech.synapsenetwork.app.Constants;
 import tech.synapsenetwork.app.entity.NetworkInfo;
 import tech.synapsenetwork.app.interact.FindDefaultWalletInteract;
 import tech.synapsenetwork.app.repository.EthereumNetworkRepositoryType;
-import tech.synapsenetwork.app.Router.ManageWalletsRouter;
+import tech.synapsenetwork.app.router.ManageWalletsRouter;
 
 import javax.inject.Inject;
 

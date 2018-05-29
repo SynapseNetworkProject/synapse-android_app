@@ -8,7 +8,7 @@ import tech.synapsenetwork.app.repository.PasswordStore;
 import tech.synapsenetwork.app.repository.PreferenceRepositoryType;
 import tech.synapsenetwork.app.repository.TransactionRepositoryType;
 import tech.synapsenetwork.app.repository.WalletRepositoryType;
-import tech.synapsenetwork.app.Router.GasSettingsRouter;
+import tech.synapsenetwork.app.router.GasSettingsRouter;
 import tech.synapsenetwork.app.viewmodel.ConfirmationViewModelFactory;
 
 import dagger.Module;

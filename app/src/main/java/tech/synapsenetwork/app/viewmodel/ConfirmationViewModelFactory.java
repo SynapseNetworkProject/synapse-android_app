@@ -7,7 +7,7 @@ import android.support.annotation.NonNull;
 import tech.synapsenetwork.app.interact.CreateTransactionInteract;
 import tech.synapsenetwork.app.interact.FetchGasSettingsInteract;
 import tech.synapsenetwork.app.interact.FindDefaultWalletInteract;
-import tech.synapsenetwork.app.Router.GasSettingsRouter;
+import tech.synapsenetwork.app.router.GasSettingsRouter;
 
 public class ConfirmationViewModelFactory implements ViewModelProvider.Factory {
 

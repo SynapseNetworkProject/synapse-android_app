@@ -6,7 +6,7 @@ import android.support.annotation.NonNull;
 
 import tech.synapsenetwork.app.interact.FindDefaultNetworkInteract;
 import tech.synapsenetwork.app.interact.FindDefaultWalletInteract;
-import tech.synapsenetwork.app.Router.ExternalBrowserRouter;
+import tech.synapsenetwork.app.router.ExternalBrowserRouter;
 
 public class TransactionDetailViewModelFactory implements ViewModelProvider.Factory {
 

@@ -9,9 +9,9 @@ import tech.synapsenetwork.app.entity.Token;
 import tech.synapsenetwork.app.entity.Wallet;
 import tech.synapsenetwork.app.interact.FetchTokensInteract;
 import tech.synapsenetwork.app.interact.FindDefaultNetworkInteract;
-import tech.synapsenetwork.app.Router.AddTokenRouter;
-import tech.synapsenetwork.app.Router.SendTokenRouter;
-import tech.synapsenetwork.app.Router.TransactionsRouter;
+import tech.synapsenetwork.app.router.AddTokenRouter;
+import tech.synapsenetwork.app.router.SendTokenRouter;
+import tech.synapsenetwork.app.router.TransactionsRouter;
 
 public class TokensViewModel extends BaseViewModel {
     private final MutableLiveData<NetworkInfo> defaultNetwork = new MutableLiveData<>();

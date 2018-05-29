@@ -27,8 +27,8 @@
                     android:data="https://github.com/TrustWallet/trust-wallet-android" />
             </Preference>
 
-            <Preference android:title="@string/title_report_bug"
-                        android:icon="@mipmap/settings_bug">
+            <Preference android:icon="@mipmap/settings_bug"
+                android:title="@string/title_report_bug">
                 <intent android:action="android.intent.action.VIEW"
                     android:data="https://github.com/TrustWallet/trust-wallet-android/issues/new" />
             </Preference>

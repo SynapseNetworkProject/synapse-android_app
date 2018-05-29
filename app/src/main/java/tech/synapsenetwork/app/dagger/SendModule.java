@@ -1,6 +1,6 @@
 package tech.synapsenetwork.app.dagger;
 
-import tech.synapsenetwork.app.Router.ConfirmationRouter;
+import tech.synapsenetwork.app.router.ConfirmationRouter;
 import tech.synapsenetwork.app.viewmodel.SendViewModelFactory;
 
 import dagger.Module;

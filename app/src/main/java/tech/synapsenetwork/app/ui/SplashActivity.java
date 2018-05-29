@@ -7,8 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.core.CrashlyticsCore;
 import tech.synapsenetwork.app.entity.Wallet;
-import tech.synapsenetwork.app.Router.ManageWalletsRouter;
-import tech.synapsenetwork.app.Router.TransactionsRouter;
+import tech.synapsenetwork.app.router.ManageWalletsRouter;
+import tech.synapsenetwork.app.router.TransactionsRouter;
 import tech.synapsenetwork.app.viewmodel.SplashViewModel;
 import tech.synapsenetwork.app.viewmodel.SplashViewModelFactory;
 

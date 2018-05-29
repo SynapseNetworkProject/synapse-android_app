@@ -8,8 +8,8 @@ import tech.synapsenetwork.app.interact.FindDefaultWalletInteract;
 import tech.synapsenetwork.app.interact.SetDefaultWalletInteract;
 import tech.synapsenetwork.app.repository.PasswordStore;
 import tech.synapsenetwork.app.repository.WalletRepositoryType;
-import tech.synapsenetwork.app.Router.ImportWalletRouter;
-import tech.synapsenetwork.app.Router.TransactionsRouter;
+import tech.synapsenetwork.app.router.ImportWalletRouter;
+import tech.synapsenetwork.app.router.TransactionsRouter;
 import tech.synapsenetwork.app.viewmodel.WalletsViewModelFactory;
 
 import dagger.Module;

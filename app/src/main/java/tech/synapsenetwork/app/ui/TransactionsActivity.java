@@ -58,8 +58,8 @@ public class TransactionsActivity extends BaseNavigationActivity implements View
         setContentView(tech.synapsenetwork.app.R.layout.activity_transactions);
 
         toolbar();
-        setTitle(getString(tech.synapsenetwork.app.R.string.unknown_balance_with_symbol));
-        setSubtitle("");
+        //setTitle(getString(tech.synapsenetwork.app.R.string.unknown_balance_with_symbol));
+        //setSubtitle("");
         initBottomNavigation();
         dissableDisplayHomeAsUp();
 
@@ -80,7 +80,7 @@ public class TransactionsActivity extends BaseNavigationActivity implements View
         viewModel.progress().observe(this, systemView::showProgress);
         viewModel.error().observe(this, this::onError);
         viewModel.defaultNetwork().observe(this, this::onDefaultNetwork);
-        viewModel.defaultWalletBalance().observe(this, this::onBalanceChanged);
+        //viewModel.defaultWalletBalance().observe(this, this::onBalanceChanged);
         viewModel.defaultWallet().observe(this, this::onDefaultWallet);
         viewModel.transactions().observe(this, this::onTransactions);
 
@@ -95,8 +95,8 @@ public class TransactionsActivity extends BaseNavigationActivity implements View
     protected void onResume() {
         super.onResume();
 
-        setTitle(getString(tech.synapsenetwork.app.R.string.unknown_balance_without_symbol));
-        setSubtitle("");
+        //setTitle(getString(tech.synapsenetwork.app.R.string.unknown_balance_without_symbol));
+        //setSubtitle("");
         adapter.clear();
         viewModel.prepare();
         checkRoot();
@@ -113,12 +113,12 @@ public class TransactionsActivity extends BaseNavigationActivity implements View
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(tech.synapsenetwork.app.R.menu.menu_settings, menu);
-
-        NetworkInfo networkInfo = viewModel.defaultNetwork().getValue();
-        if (networkInfo != null && networkInfo.name.equals(Constants.ETHEREUM_NETWORK_NAME)) {
-            getMenuInflater().inflate(tech.synapsenetwork.app.R.menu.menu_deposit, menu);
-        }
+//        getMenuInflater().inflate(tech.synapsenetwork.app.R.menu.menu_settings, menu);
+//
+//        NetworkInfo networkInfo = viewModel.defaultNetwork().getValue();
+//        if (networkInfo != null && networkInfo.name.equals(Constants.ETHEREUM_NETWORK_NAME)) {
+//            getMenuInflater().inflate(tech.synapsenetwork.app.R.menu.menu_deposit, menu);
+//        }
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -185,7 +185,7 @@ public class TransactionsActivity extends BaseNavigationActivity implements View
     private void onTransactions(Transaction[] transaction) {
         if (transaction == null || transaction.length == 0) {
             EmptyTransactionsView emptyView = new EmptyTransactionsView(this, this);
-            emptyView.setNetworkInfo(viewModel.defaultNetwork().getValue());
+            //emptyView.setNetworkInfo(viewModel.defaultNetwork().getValue());
             systemView.showEmpty(emptyView);
         }
         adapter.addTransactions(transaction);

@@ -1,4 +1,4 @@
-package tech.synapsenetwork.app.Router;
+package tech.synapsenetwork.app.router;
 
 import android.app.Activity;
 import android.content.Context;

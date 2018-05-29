@@ -5,7 +5,7 @@ import android.content.Context;
 
 import tech.synapsenetwork.app.entity.Transaction;
 import tech.synapsenetwork.app.entity.Wallet;
-import tech.synapsenetwork.app.Router.ConfirmationRouter;
+import tech.synapsenetwork.app.router.ConfirmationRouter;
 
 import java.math.BigInteger;
 

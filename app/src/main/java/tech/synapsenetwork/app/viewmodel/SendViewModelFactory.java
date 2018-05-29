@@ -3,7 +3,7 @@ package tech.synapsenetwork.app.viewmodel;
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 
-import tech.synapsenetwork.app.Router.ConfirmationRouter;
+import tech.synapsenetwork.app.router.ConfirmationRouter;
 
 import io.reactivex.annotations.NonNull;
 

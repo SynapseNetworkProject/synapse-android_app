@@ -6,7 +6,7 @@ import android.support.annotation.NonNull;
 
 import tech.synapsenetwork.app.interact.AddTokenInteract;
 import tech.synapsenetwork.app.interact.FindDefaultWalletInteract;
-import tech.synapsenetwork.app.Router.MyTokensRouter;
+import tech.synapsenetwork.app.router.MyTokensRouter;
 
 public class AddTokenViewModelFactory implements ViewModelProvider.Factory {
 
