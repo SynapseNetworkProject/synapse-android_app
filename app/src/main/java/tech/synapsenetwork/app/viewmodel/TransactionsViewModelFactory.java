@@ -15,6 +15,7 @@ import tech.synapsenetwork.app.router.MyTokensRouter;
 import tech.synapsenetwork.app.router.SendRouter;
 import tech.synapsenetwork.app.router.SettingsRouter;
 import tech.synapsenetwork.app.router.TransactionDetailRouter;
+import tech.synapsenetwork.app.router.TransactionsRouter;
 
 public class TransactionsViewModelFactory implements ViewModelProvider.Factory {
 
@@ -28,6 +29,7 @@ public class TransactionsViewModelFactory implements ViewModelProvider.Factory {
     private final TransactionDetailRouter transactionDetailRouter;
     private final MyAddressRouter myAddressRouter;
     private final MyTokensRouter myTokensRouter;
+    private final TransactionsRouter transactionsRouter;
     private final ExternalBrowserRouter externalBrowserRouter;
 
     public TransactionsViewModelFactory(
@@ -41,6 +43,7 @@ public class TransactionsViewModelFactory implements ViewModelProvider.Factory {
             TransactionDetailRouter transactionDetailRouter,
             MyAddressRouter myAddressRouter,
             MyTokensRouter myTokensRouter,
+            TransactionsRouter transactionsRouter,
             ExternalBrowserRouter externalBrowserRouter) {
         this.findDefaultNetworkInteract = findDefaultNetworkInteract;
         this.findDefaultWalletInteract = findDefaultWalletInteract;
@@ -52,6 +55,7 @@ public class TransactionsViewModelFactory implements ViewModelProvider.Factory {
         this.transactionDetailRouter = transactionDetailRouter;
         this.myAddressRouter = myAddressRouter;
         this.myTokensRouter = myTokensRouter;
+        this.transactionsRouter = transactionsRouter;
         this.externalBrowserRouter = externalBrowserRouter;
     }
 
@@ -69,6 +73,7 @@ public class TransactionsViewModelFactory implements ViewModelProvider.Factory {
                 transactionDetailRouter,
                 myAddressRouter,
                 myTokensRouter,
+                transactionsRouter,
                 externalBrowserRouter);
     }
 }

@@ -25,9 +25,10 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/qr_code_wallet"
+                android:id="@+id/qr_code_image"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
+                android:scaleType="fitXY"
                 tools:src="@color/list_group_head" />
 
             <TextView

@@ -1,6 +1,7 @@
 package tech.synapsenetwork.app.ui;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,6 +11,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.Map;
@@ -22,6 +24,7 @@ import tech.synapsenetwork.app.R;
 import tech.synapsenetwork.app.entity.ErrorEnvelope;
 import tech.synapsenetwork.app.entity.NetworkInfo;
 import tech.synapsenetwork.app.entity.Wallet;
+import tech.synapsenetwork.app.util.CreateQRImage;
 import tech.synapsenetwork.app.viewmodel.TransactionsViewModel;
 import tech.synapsenetwork.app.viewmodel.TransactionsViewModelFactory;
 
@@ -78,6 +81,13 @@ public class HomeActivity extends BaseActivity {
             }
         });
 
+        findViewById(R.id.history).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewModel.showTransactions(getBaseContext());
+            }
+        });
+
     }
 
 
@@ -92,6 +102,11 @@ public class HomeActivity extends BaseActivity {
         super.onPause();
     }
 
+
+    private void showQrImage(Wallet wallet) {
+        final Bitmap qrCode = CreateQRImage.createQRImage(this, getWindowManager(), wallet.address);
+        ((ImageView) findViewById(R.id.qr_code_image)).setImageBitmap(qrCode);
+    }
 
 //    @Override
 //    public boolean onOptionsItemSelected(MenuItem item) {
@@ -150,6 +165,7 @@ public class HomeActivity extends BaseActivity {
     }
 
     private void onDefaultWallet(Wallet wallet) {
+        showQrImage(wallet);
         Log.d("address", wallet.address);
     }
 

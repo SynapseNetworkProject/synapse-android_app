@@ -61,7 +61,7 @@ public class TransactionsActivity extends BaseNavigationActivity implements View
         toolbar();
         setTitle(getString(R.string.transactions));
         //setSubtitle("");
-        initBottomNavigation();
+        //initBottomNavigation();
         //dissableDisplayHomeAsUp();
 
         adapter = new TransactionsAdapter(this::onTransactionClick);
@@ -199,7 +199,7 @@ public class TransactionsActivity extends BaseNavigationActivity implements View
 
     private void onDefaultNetwork(NetworkInfo networkInfo) {
         adapter.setDefaultNetwork(networkInfo);
-        setBottomMenu(tech.synapsenetwork.app.R.menu.menu_main_network);
+        //setBottomMenu(tech.synapsenetwork.app.R.menu.menu_main_network);
     }
 
     private void onError(ErrorEnvelope errorEnvelope) {

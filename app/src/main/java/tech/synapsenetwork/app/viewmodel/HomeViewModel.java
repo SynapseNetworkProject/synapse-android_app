@@ -22,7 +22,7 @@ import tech.synapsenetwork.app.router.SettingsRouter;
 
 public class HomeViewModel extends BaseViewModel {
 
-    private static final long GET_BALANCE_INTERVAL = 8;
+    private static final long GET_BALANCE_INTERVAL = 60;
     private final MutableLiveData<NetworkInfo> defaultNetwork = new MutableLiveData<>();
     private final MutableLiveData<Wallet> defaultWallet = new MutableLiveData<>();
     private final MutableLiveData<Map<String, String>> defaultWalletBalance = new MutableLiveData<>();

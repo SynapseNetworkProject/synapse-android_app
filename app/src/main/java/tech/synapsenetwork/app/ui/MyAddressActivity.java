@@ -24,10 +24,11 @@ import javax.inject.Inject;
 
 import dagger.android.AndroidInjection;
 import tech.synapsenetwork.app.Constants;
+import tech.synapsenetwork.app.util.CreateQRImage;
 
 public class MyAddressActivity extends BaseActivity implements View.OnClickListener {
 
-    private static final float QR_IMAGE_WIDTH_RATIO = 0.9f;
+
     public static final String KEY_ADDRESS = "key_address";
 
     @Inject
@@ -51,29 +52,10 @@ public class MyAddressActivity extends BaseActivity implements View.OnClickListe
         ((TextView) findViewById(tech.synapsenetwork.app.R.id.address_suggestion)).setText(suggestion);
         ((TextView) findViewById(tech.synapsenetwork.app.R.id.address)).setText(wallet.address);
         findViewById(tech.synapsenetwork.app.R.id.copy_action).setOnClickListener(this);
-        final Bitmap qrCode = createQRImage(wallet.address);
+        final Bitmap qrCode = CreateQRImage.createQRImage(this, getWindowManager(), wallet.address);
         ((ImageView) findViewById(tech.synapsenetwork.app.R.id.qr_image)).setImageBitmap(qrCode);
     }
 
-    private Bitmap createQRImage(String address) {
-        Point size = new Point();
-        getWindowManager().getDefaultDisplay().getSize(size);
-        int imageSize = (int) (size.x * QR_IMAGE_WIDTH_RATIO);
-        try {
-            BitMatrix bitMatrix = new MultiFormatWriter().encode(
-                    address,
-                    BarcodeFormat.QR_CODE,
-                    imageSize,
-                    imageSize,
-                    null);
-            BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
-            return barcodeEncoder.createBitmap(bitMatrix);
-        } catch (Exception e) {
-            Toast.makeText(this, getString(tech.synapsenetwork.app.R.string.error_fail_generate_qr), Toast.LENGTH_SHORT)
-                .show();
-        }
-        return null;
-    }
 
     @Override
     public void onClick(View v) {

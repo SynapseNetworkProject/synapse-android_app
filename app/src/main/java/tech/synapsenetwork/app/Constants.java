@@ -46,6 +46,8 @@ public abstract class Constants {
     public static final long NETWORK_FEE_MAX = 20000000000000000L;
     public static final int ETHER_DECIMALS = 18;
 
+    public static final float QR_IMAGE_WIDTH_RATIO = 1f;
+
     public interface ErrorCode {
 
         int UNKNOWN = 1;

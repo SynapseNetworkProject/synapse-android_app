@@ -25,10 +25,11 @@ import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
+import tech.synapsenetwork.app.router.TransactionsRouter;
 
 public class TransactionsViewModel extends BaseViewModel {
-    private static final long GET_BALANCE_INTERVAL = 8;
-    private static final long FETCH_TRANSACTIONS_INTERVAL = 10;
+    private static final long GET_BALANCE_INTERVAL = 60;
+    private static final long FETCH_TRANSACTIONS_INTERVAL = 60;
     private final MutableLiveData<NetworkInfo> defaultNetwork = new MutableLiveData<>();
     private final MutableLiveData<Wallet> defaultWallet = new MutableLiveData<>();
     private final MutableLiveData<Transaction[]> transactions = new MutableLiveData<>();
@@ -45,6 +46,7 @@ public class TransactionsViewModel extends BaseViewModel {
     private final TransactionDetailRouter transactionDetailRouter;
     private final MyAddressRouter myAddressRouter;
     private final MyTokensRouter myTokensRouter;
+    private final TransactionsRouter myTransactionsRouter;
     private final ExternalBrowserRouter externalBrowserRouter;
     private Disposable balanceDisposable;
     private Disposable transactionDisposable;
@@ -60,7 +62,9 @@ public class TransactionsViewModel extends BaseViewModel {
             TransactionDetailRouter transactionDetailRouter,
             MyAddressRouter myAddressRouter,
             MyTokensRouter myTokensRouter,
+            TransactionsRouter myTransactionsRouter,
             ExternalBrowserRouter externalBrowserRouter) {
+
         this.findDefaultNetworkInteract = findDefaultNetworkInteract;
         this.findDefaultWalletInteract = findDefaultWalletInteract;
         this.getDefaultWalletBalance = getDefaultWalletBalance;
@@ -72,6 +76,7 @@ public class TransactionsViewModel extends BaseViewModel {
         this.myAddressRouter = myAddressRouter;
         this.myTokensRouter = myTokensRouter;
         this.externalBrowserRouter = externalBrowserRouter;
+        this.myTransactionsRouter = myTransactionsRouter;
     }
 
     @Override
@@ -136,8 +141,8 @@ public class TransactionsViewModel extends BaseViewModel {
 
     private void onDefaultWallet(Wallet wallet) {
         defaultWallet.setValue(wallet);
-        //getBalance();
-        //fetchTransactions();
+        getBalance();
+        fetchTransactions();
     }
 
     private void onTransactions(Transaction[] transactions) {
@@ -155,6 +160,10 @@ public class TransactionsViewModel extends BaseViewModel {
 
     public void showSend(Context context) {
         sendRouter.open(context);
+    }
+
+    public void showTransactions(Context context) {
+        myTransactionsRouter.open(context,false);
     }
 
     public void showDetails(Context context, Transaction transaction) {
