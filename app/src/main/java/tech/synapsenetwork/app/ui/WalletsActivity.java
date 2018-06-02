@@ -98,7 +98,7 @@ public class WalletsActivity extends BaseActivity implements
 
     @Override
     public void onBackPressed() {
-        finish(); 
+        finish();
     }
 
     @Override

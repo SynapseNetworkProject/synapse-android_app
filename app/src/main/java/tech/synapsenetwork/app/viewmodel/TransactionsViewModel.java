@@ -26,6 +26,7 @@ import java.util.concurrent.TimeUnit;
 import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
 import tech.synapsenetwork.app.router.TransactionsRouter;
+import tech.synapsenetwork.app.router.WebRTCRouter;
 
 public class TransactionsViewModel extends BaseViewModel {
     private static final long GET_BALANCE_INTERVAL = 60;
@@ -47,7 +48,9 @@ public class TransactionsViewModel extends BaseViewModel {
     private final MyAddressRouter myAddressRouter;
     private final MyTokensRouter myTokensRouter;
     private final TransactionsRouter myTransactionsRouter;
+    private final WebRTCRouter webRTCRouter;
     private final ExternalBrowserRouter externalBrowserRouter;
+
     private Disposable balanceDisposable;
     private Disposable transactionDisposable;
 
@@ -63,7 +66,8 @@ public class TransactionsViewModel extends BaseViewModel {
             MyAddressRouter myAddressRouter,
             MyTokensRouter myTokensRouter,
             TransactionsRouter myTransactionsRouter,
-            ExternalBrowserRouter externalBrowserRouter) {
+            ExternalBrowserRouter externalBrowserRouter,
+            WebRTCRouter webRTCRouter) {
 
         this.findDefaultNetworkInteract = findDefaultNetworkInteract;
         this.findDefaultWalletInteract = findDefaultWalletInteract;
@@ -77,6 +81,7 @@ public class TransactionsViewModel extends BaseViewModel {
         this.myTokensRouter = myTokensRouter;
         this.externalBrowserRouter = externalBrowserRouter;
         this.myTransactionsRouter = myTransactionsRouter;
+        this.webRTCRouter = webRTCRouter;
     }
 
     @Override
@@ -163,7 +168,7 @@ public class TransactionsViewModel extends BaseViewModel {
     }
 
     public void showTransactions(Context context) {
-        myTransactionsRouter.open(context,false);
+        myTransactionsRouter.open(context, false);
     }
 
     public void showDetails(Context context, Transaction transaction) {
@@ -176,6 +181,10 @@ public class TransactionsViewModel extends BaseViewModel {
 
     public void showTokens(Context context) {
         myTokensRouter.open(context, defaultWallet.getValue());
+    }
+
+    public void showChat(Context context) {
+        webRTCRouter.open(context, false);
     }
 
     public void openDeposit(Context context, Uri uri) {

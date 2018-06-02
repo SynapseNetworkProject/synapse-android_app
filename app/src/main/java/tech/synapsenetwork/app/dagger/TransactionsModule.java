@@ -15,6 +15,7 @@ import tech.synapsenetwork.app.router.SendRouter;
 import tech.synapsenetwork.app.router.SettingsRouter;
 import tech.synapsenetwork.app.router.TransactionDetailRouter;
 import tech.synapsenetwork.app.router.TransactionsRouter;
+import tech.synapsenetwork.app.router.WebRTCRouter;
 import tech.synapsenetwork.app.viewmodel.TransactionsViewModelFactory;
 
 import dagger.Module;
@@ -35,7 +36,9 @@ class TransactionsModule {
             MyAddressRouter myAddressRouter,
             MyTokensRouter myTokensRouter,
             TransactionsRouter transactionsRouter,
-            ExternalBrowserRouter externalBrowserRouter) {
+            ExternalBrowserRouter externalBrowserRouter,
+            WebRTCRouter webRTCRouter) {
+
         return new TransactionsViewModelFactory(
                 findDefaultNetworkInteract,
                 findDefaultWalletInteract,
@@ -48,7 +51,8 @@ class TransactionsModule {
                 myAddressRouter,
                 myTokensRouter,
                 transactionsRouter,
-                externalBrowserRouter);
+                externalBrowserRouter,
+                webRTCRouter);
     }
 
     @Provides
@@ -112,4 +116,10 @@ class TransactionsModule {
     ExternalBrowserRouter provideExternalBrowserRouter() {
         return new ExternalBrowserRouter();
     }
+
+    @Provides
+    WebRTCRouter provideWebRTCRouter() {
+        return new WebRTCRouter();
+    }
+
 }

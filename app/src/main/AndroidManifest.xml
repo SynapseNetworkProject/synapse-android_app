@@ -8,6 +8,19 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS" />
 
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
+
     <application
         android:name="tech.synapsenetwork.app.Application"
         android:allowBackup="false"
@@ -74,6 +87,24 @@
             android:label="@string/title_send_settings" />
         <activity
             android:name="tech.synapsenetwork.app.ui.HomeActivity"
+            android:label="@string/title_home" />
+
+        <activity
+            android:name=".webrtc.activity.AppRTCMainActivity"
+            android:label="@string/title_home" />
+        <activity
+            android:name=".webrtc.activity.CallActivity"
+            android:label="@string/title_home" />
+
+        <activity
+            android:name=".chat.StyledDialogsActivity"
+            android:label="@string/title_home" />
+
+        <activity
+            android:name=".chat.StyledMessagesActivity"
+            android:label="@string/title_home" />
+        <activity
+            android:name=".chat.CustomMediaMessagesActivity"
             android:label="@string/title_home" />
 
         <meta-data

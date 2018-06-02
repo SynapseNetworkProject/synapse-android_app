@@ -16,6 +16,7 @@ import tech.synapsenetwork.app.router.SendRouter;
 import tech.synapsenetwork.app.router.SettingsRouter;
 import tech.synapsenetwork.app.router.TransactionDetailRouter;
 import tech.synapsenetwork.app.router.TransactionsRouter;
+import tech.synapsenetwork.app.router.WebRTCRouter;
 
 public class TransactionsViewModelFactory implements ViewModelProvider.Factory {
 
@@ -31,6 +32,7 @@ public class TransactionsViewModelFactory implements ViewModelProvider.Factory {
     private final MyTokensRouter myTokensRouter;
     private final TransactionsRouter transactionsRouter;
     private final ExternalBrowserRouter externalBrowserRouter;
+    private final WebRTCRouter webRTCRouter;
 
     public TransactionsViewModelFactory(
             FindDefaultNetworkInteract findDefaultNetworkInteract,
@@ -44,7 +46,8 @@ public class TransactionsViewModelFactory implements ViewModelProvider.Factory {
             MyAddressRouter myAddressRouter,
             MyTokensRouter myTokensRouter,
             TransactionsRouter transactionsRouter,
-            ExternalBrowserRouter externalBrowserRouter) {
+            ExternalBrowserRouter externalBrowserRouter,
+            WebRTCRouter webRTCRouter) {
         this.findDefaultNetworkInteract = findDefaultNetworkInteract;
         this.findDefaultWalletInteract = findDefaultWalletInteract;
         this.getDefaultWalletBalance = getDefaultWalletBalance;
@@ -57,6 +60,7 @@ public class TransactionsViewModelFactory implements ViewModelProvider.Factory {
         this.myTokensRouter = myTokensRouter;
         this.transactionsRouter = transactionsRouter;
         this.externalBrowserRouter = externalBrowserRouter;
+        this.webRTCRouter = webRTCRouter;
     }
 
     @NonNull
@@ -74,6 +78,7 @@ public class TransactionsViewModelFactory implements ViewModelProvider.Factory {
                 myAddressRouter,
                 myTokensRouter,
                 transactionsRouter,
-                externalBrowserRouter);
+                externalBrowserRouter,
+                webRTCRouter);
     }
 }

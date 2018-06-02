@@ -1,6 +1,7 @@
 package tech.synapsenetwork.app.ui;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -21,6 +22,7 @@ import javax.inject.Inject;
 import dagger.android.AndroidInjection;
 import tech.synapsenetwork.app.Constants;
 import tech.synapsenetwork.app.R;
+import tech.synapsenetwork.app.chat.StyledDialogsActivity;
 import tech.synapsenetwork.app.entity.ErrorEnvelope;
 import tech.synapsenetwork.app.entity.NetworkInfo;
 import tech.synapsenetwork.app.entity.Wallet;
@@ -65,30 +67,43 @@ public class HomeActivity extends BaseActivity {
         findViewById(R.id.receive).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewModel.showMyAddress(getBaseContext());
+                viewModel.showMyAddress(v.getContext());
             }
         });
 
         findViewById(R.id.settings).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewModel.showSettings(getBaseContext());
+                viewModel.showSettings(v.getContext());
             }
         });
         findViewById(R.id.send).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewModel.showSend(getBaseContext());
+                viewModel.showSend(v.getContext());
             }
         });
 
         findViewById(R.id.history).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewModel.showTransactions(getBaseContext());
+                viewModel.showTransactions(v.getContext());
             }
         });
 
+        findViewById(R.id.chat).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewModel.showChat(v.getContext());
+            }
+        });
+
+        findViewById(R.id.dapp).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(v.getContext(), StyledDialogsActivity.class));
+            }
+        });
     }
 
 

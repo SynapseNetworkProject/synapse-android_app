@@ -49,9 +49,19 @@ android {
     lintOptions {
         abortOnError false
     }
+
+    sourceSets.main {
+        jniLibs.srcDir 'libs'
+        jni.srcDirs = [] //disable automatic ndk-build call
+    }
+
     compileOptions {
         targetCompatibility 1.8
         sourceCompatibility 1.8
+    }
+
+    dataBinding {
+        enabled true
     }
 }
 
@@ -65,7 +75,12 @@ project.ext {
     rxJavaVersion = "2.1.6"
     rxAndroidVersion = "2.0.1"
     daggerVersion = "2.11"
+    picassoVersion = '2.5.2'
+    circleImageViewVersion = '2.1.0'
+    shapeImageViewVersion = '0.9.3'
+    circleindicatorVersion = '1.2.2@aar'
 }
+
 
 
 dependencies {
@@ -123,6 +138,25 @@ dependencies {
         transitive = true;
     }
     // PW
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile project(":tn")
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(":tn")
+
+    implementation 'pub.devrel:easypermissions:1.1.3'
+
+    implementation files('libs/autobanh.jar')
+    implementation files('libs/base_java.jar')
+    implementation files('libs/libjingle_peerconnection.jar')
+
+    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.github.stfalcon:chatkit:0.2.2'
+
+    //Picasso
+    compile "com.squareup.picasso:picasso:$picassoVersion"
+
+    //ImageViews
+    compile "de.hdodenhof:circleimageview:$circleImageViewVersion"
+    compile "com.github.siyamed:android-shape-imageview:$shapeImageViewVersion"
+
+    //Utils
+    compile "me.relex:circleindicator:$circleindicatorVersion"
 }
