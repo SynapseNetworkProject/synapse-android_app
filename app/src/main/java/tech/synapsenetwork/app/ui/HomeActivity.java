@@ -43,6 +43,7 @@ public class HomeActivity extends BaseActivity {
 
         toolbar();
         setTitle(getString(R.string.transactions));
+        dissableDisplayHomeAsUp();
 
         SwipeRefreshLayout refreshLayout = findViewById(R.id.refresh_layout);
 

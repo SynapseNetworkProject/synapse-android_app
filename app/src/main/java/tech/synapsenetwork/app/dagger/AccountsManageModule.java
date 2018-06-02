@@ -8,6 +8,7 @@ import tech.synapsenetwork.app.interact.FindDefaultWalletInteract;
 import tech.synapsenetwork.app.interact.SetDefaultWalletInteract;
 import tech.synapsenetwork.app.repository.PasswordStore;
 import tech.synapsenetwork.app.repository.WalletRepositoryType;
+import tech.synapsenetwork.app.router.HomeRouter;
 import tech.synapsenetwork.app.router.ImportWalletRouter;
 import tech.synapsenetwork.app.router.TransactionsRouter;
 import tech.synapsenetwork.app.viewmodel.WalletsViewModelFactory;
@@ -27,7 +28,9 @@ class AccountsManageModule {
 			FindDefaultWalletInteract findDefaultWalletInteract,
 			ExportWalletInteract exportWalletInteract,
 			ImportWalletRouter importWalletRouter,
-            TransactionsRouter transactionsRouter) {
+            TransactionsRouter transactionsRouter,
+			HomeRouter homeRouter
+			) {
 		return new WalletsViewModelFactory(createWalletInteract,
                 setDefaultWalletInteract,
                 deleteWalletInteract,
@@ -35,7 +38,8 @@ class AccountsManageModule {
                 findDefaultWalletInteract,
                 exportWalletInteract,
                 importWalletRouter,
-                transactionsRouter);
+                transactionsRouter,
+				homeRouter);
 	}
 
 	@Provides
@@ -80,4 +84,9 @@ class AccountsManageModule {
     TransactionsRouter provideTransactionsRouter() {
 	    return new TransactionsRouter();
     }
+
+	@Provides
+	HomeRouter provideHomeRouter() {
+		return new HomeRouter();
+	}
 }

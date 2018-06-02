@@ -10,6 +10,7 @@ import tech.synapsenetwork.app.interact.ExportWalletInteract;
 import tech.synapsenetwork.app.interact.FetchWalletsInteract;
 import tech.synapsenetwork.app.interact.FindDefaultWalletInteract;
 import tech.synapsenetwork.app.interact.SetDefaultWalletInteract;
+import tech.synapsenetwork.app.router.HomeRouter;
 import tech.synapsenetwork.app.router.ImportWalletRouter;
 import tech.synapsenetwork.app.router.TransactionsRouter;
 
@@ -17,19 +18,20 @@ import javax.inject.Inject;
 
 public class WalletsViewModelFactory implements ViewModelProvider.Factory {
 
-	private final CreateWalletInteract createWalletInteract;
-	private final SetDefaultWalletInteract setDefaultWalletInteract;
-	private final DeleteWalletInteract deleteWalletInteract;
-	private final FetchWalletsInteract fetchWalletsInteract;
-	private final FindDefaultWalletInteract findDefaultWalletInteract;
+    private final CreateWalletInteract createWalletInteract;
+    private final SetDefaultWalletInteract setDefaultWalletInteract;
+    private final DeleteWalletInteract deleteWalletInteract;
+    private final FetchWalletsInteract fetchWalletsInteract;
+    private final FindDefaultWalletInteract findDefaultWalletInteract;
     private final ExportWalletInteract exportWalletInteract;
 
-	private final ImportWalletRouter importWalletRouter;
+    private final ImportWalletRouter importWalletRouter;
     private final TransactionsRouter transactionsRouter;
+    private final HomeRouter homeRouter;
 
 
     @Inject
-	public WalletsViewModelFactory(
+    public WalletsViewModelFactory(
             CreateWalletInteract createWalletInteract,
             SetDefaultWalletInteract setDefaultWalletInteract,
             DeleteWalletInteract deleteWalletInteract,
@@ -37,21 +39,23 @@ public class WalletsViewModelFactory implements ViewModelProvider.Factory {
             FindDefaultWalletInteract findDefaultWalletInteract,
             ExportWalletInteract exportWalletInteract,
             ImportWalletRouter importWalletRouter,
-            TransactionsRouter transactionsRouter) {
-		this.createWalletInteract = createWalletInteract;
-		this.setDefaultWalletInteract = setDefaultWalletInteract;
-		this.deleteWalletInteract = deleteWalletInteract;
-		this.fetchWalletsInteract = fetchWalletsInteract;
-		this.findDefaultWalletInteract = findDefaultWalletInteract;
-		this.exportWalletInteract = exportWalletInteract;
-		this.importWalletRouter = importWalletRouter;
-		this.transactionsRouter = transactionsRouter;
-	}
+            TransactionsRouter transactionsRouter,
+            HomeRouter homeRouter) {
+        this.createWalletInteract = createWalletInteract;
+        this.setDefaultWalletInteract = setDefaultWalletInteract;
+        this.deleteWalletInteract = deleteWalletInteract;
+        this.fetchWalletsInteract = fetchWalletsInteract;
+        this.findDefaultWalletInteract = findDefaultWalletInteract;
+        this.exportWalletInteract = exportWalletInteract;
+        this.importWalletRouter = importWalletRouter;
+        this.transactionsRouter = transactionsRouter;
+        this.homeRouter = homeRouter;
+    }
 
-	@NonNull
-	@Override
-	public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-		return (T) new WalletsViewModel(
+    @NonNull
+    @Override
+    public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
+        return (T) new WalletsViewModel(
                 createWalletInteract,
                 setDefaultWalletInteract,
                 deleteWalletInteract,
@@ -59,6 +63,7 @@ public class WalletsViewModelFactory implements ViewModelProvider.Factory {
                 findDefaultWalletInteract,
                 exportWalletInteract,
                 importWalletRouter,
-                transactionsRouter);
-	}
+                transactionsRouter,
+                homeRouter);
+    }
 }

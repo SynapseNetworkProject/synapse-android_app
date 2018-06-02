@@ -2,10 +2,13 @@ package tech.synapsenetwork.app.ui;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
 import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.core.CrashlyticsCore;
+
+import tech.synapsenetwork.app.R;
 import tech.synapsenetwork.app.entity.Wallet;
 import tech.synapsenetwork.app.router.HomeRouter;
 import tech.synapsenetwork.app.router.ManageWalletsRouter;
@@ -28,8 +31,10 @@ public class SplashActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setContentView(R.layout.activity_splash);
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
+
         Fabric.with(this, new Crashlytics.Builder()
                 .core(new CrashlyticsCore.Builder().disabled(BuildConfig.DEBUG).build()).build());
 
@@ -40,11 +45,18 @@ public class SplashActivity extends AppCompatActivity {
 
     private void onWallets(Wallet[] wallets) {
         // Start home activity
-        if (wallets.length == 0) {
-            new ManageWalletsRouter().open(this, true);
-        } else {
-            new HomeRouter().open(this, true);
-        }
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (wallets.length == 0) {
+                    new ManageWalletsRouter().open(getApplication(), true);
+                } else {
+                    new HomeRouter().open(getApplication(), true);
+                }
+            }
+        }, 500);
+
     }
 
 }

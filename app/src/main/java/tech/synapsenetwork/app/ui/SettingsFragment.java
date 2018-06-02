@@ -22,8 +22,7 @@ import javax.inject.Inject;
 
 import dagger.android.AndroidInjection;
 
-public class SettingsFragment extends PreferenceFragment
-        implements SharedPreferences.OnSharedPreferenceChangeListener {
+public class SettingsFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
     @Inject
     EthereumNetworkRepositoryType ethereumNetworkRepository;
     @Inject

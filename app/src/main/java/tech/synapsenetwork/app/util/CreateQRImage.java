@@ -29,7 +29,7 @@ public class CreateQRImage {
         windowManager.getDefaultDisplay().getSize(size);
         int imageSize = (int) (size.x * Constants.QR_IMAGE_WIDTH_RATIO);
 
-        HashMap hintMap = new HashMap(); 
+        HashMap hintMap = new HashMap();
         hintMap.put(EncodeHintType.MARGIN, 0);
 
         try {
