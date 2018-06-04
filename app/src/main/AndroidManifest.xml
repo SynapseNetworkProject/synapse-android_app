@@ -98,14 +98,17 @@
 
         <activity
             android:name=".chat.StyledDialogsActivity"
-            android:label="@string/title_home" />
+            android:label="@string/title_home"
+            android:theme="@style/AppTheme" />
 
         <activity
             android:name=".chat.StyledMessagesActivity"
-            android:label="@string/title_home" />
+            android:label="@string/title_home"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".chat.CustomMediaMessagesActivity"
-            android:label="@string/title_home" />
+            android:label="@string/title_home"
+            android:theme="@style/AppTheme" />
 
         <meta-data
             android:name="io.fabric.ApiKey"

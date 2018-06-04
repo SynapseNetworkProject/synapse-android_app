@@ -3,6 +3,13 @@ package tech.synapsenetwork.app.chat;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.LinearLayout;
 
 import com.stfalcon.chatkit.dialogs.DialogsList;
 import com.stfalcon.chatkit.dialogs.DialogsListAdapter;
@@ -14,8 +21,7 @@ import tech.synapsenetwork.app.R;
 import tech.synapsenetwork.app.chat.common.data.fixtures.DialogsFixtures;
 import tech.synapsenetwork.app.chat.common.data.model.Dialog;
 
-public class StyledDialogsActivity extends DemoDialogsActivity
-        implements DateFormatter.Formatter {
+public class StyledDialogsActivity extends DemoDialogsActivity implements DateFormatter.Formatter {
 
     public static void open(Context context) {
         context.startActivity(new Intent(context, StyledDialogsActivity.class));
@@ -27,14 +33,48 @@ public class StyledDialogsActivity extends DemoDialogsActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_styled_dialogs);
-
-        dialogsList = (DialogsList) findViewById(R.id.dialogsList);
+        getSupportActionBar().show();
+        dialogsList = findViewById(R.id.dialogsList);
         initAdapter();
     }
 
     @Override
     public void onDialogClick(Dialog dialog) {
-        CustomMediaMessagesActivity.open(this);
+        optionsDialog();
+    }
+
+    private void optionsDialog() {
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View dialogView = inflater.inflate(R.layout.dialog_chat_options, null,false);
+        dialogBuilder.setView(dialogView);
+        AlertDialog alertDialog = dialogBuilder.create();
+
+        dialogView.findViewById(R.id.chat).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CustomMediaMessagesActivity.open(v.getContext());
+                alertDialog.dismiss();
+            }
+        });
+        dialogView.findViewById(R.id.call).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        dialogView.findViewById(R.id.video_call).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
+
+        alertDialog.getWindow().setLayout(300,300);
+        alertDialog.getWindow().setGravity(Gravity.CENTER);
+        alertDialog.show();
     }
 
     @Override

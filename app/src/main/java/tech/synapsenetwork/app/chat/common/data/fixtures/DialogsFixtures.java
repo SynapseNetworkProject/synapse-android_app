@@ -9,9 +9,7 @@ import tech.synapsenetwork.app.chat.common.data.model.Dialog;
 import tech.synapsenetwork.app.chat.common.data.model.Message;
 import tech.synapsenetwork.app.chat.common.data.model.User;
 
-/*
- * Created by Anton Bevza on 07.09.16.
- */
+
 public final class DialogsFixtures extends FixturesData {
     private DialogsFixtures() {
         throw new AssertionError();
@@ -44,12 +42,12 @@ public final class DialogsFixtures extends FixturesData {
 
     private static ArrayList<User> getUsers() {
         ArrayList<User> users = new ArrayList<>();
-        int usersCount = 1 + rnd.nextInt(4);
-
-        for (int i = 0; i < usersCount; i++) {
-            users.add(getUser());
-        }
-
+//        int usersCount = 1 + rnd.nextInt(4);
+//
+//        for (int i = 0; i < usersCount; i++) {
+//            users.add(getUser());
+//        }
+        users.add(getUser());
         return users;
     }
 

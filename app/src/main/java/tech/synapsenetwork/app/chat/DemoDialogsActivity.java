@@ -12,9 +12,7 @@ import com.stfalcon.chatkit.dialogs.DialogsListAdapter;
 import tech.synapsenetwork.app.chat.common.data.model.Dialog;
 import tech.synapsenetwork.app.chat.utils.AppUtils;
 
-/*
- * Created by troy379 on 05.04.17.
- */
+
 public abstract class DemoDialogsActivity extends AppCompatActivity
         implements DialogsListAdapter.OnDialogClickListener<Dialog>,
         DialogsListAdapter.OnDialogLongClickListener<Dialog> {

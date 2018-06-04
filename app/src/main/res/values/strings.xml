@@ -445,6 +445,9 @@
     <string name="copied_message">Message copied!</string>
     <string name="date_header_yesterday">Yesterday</string>
     <string name="date_header_today">Today</string>
+    <string name="chat">Chat</string>
+    <string name="call">Call</string>
+    <string name="video_call">Video call</string>
 
 
 </resources>
