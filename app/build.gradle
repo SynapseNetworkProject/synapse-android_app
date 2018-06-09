@@ -104,7 +104,6 @@ dependencies {
     implementation "com.android.support:multidex:1.0.2"
     // Bar code scanning
     implementation "com.google.zxing:core:3.2.1"
-    implementation "com.google.android.gms:play-services-vision:11.8.0"
     // Sugar
     implementation "com.android.support.constraint:constraint-layout:1.0.2"
     implementation "com.github.apl-devs:appintro:v4.2.2"
@@ -154,9 +153,14 @@ dependencies {
     compile "com.squareup.picasso:picasso:$picassoVersion"
 
     //ImageViews
-    compile "de.hdodenhof:circleimageview:$circleImageViewVersion"
-    compile "com.github.siyamed:android-shape-imageview:$shapeImageViewVersion"
+    implementation "de.hdodenhof:circleimageview:$circleImageViewVersion"
+    implementation "com.github.siyamed:android-shape-imageview:$shapeImageViewVersion"
 
     //Utils
-    compile "me.relex:circleindicator:$circleindicatorVersion"
+    implementation "me.relex:circleindicator:$circleindicatorVersion"
+    implementation "com.google.android.gms:play-services-vision:15.0.2"
+
+    implementation 'com.google.firebase:firebase-messaging:17.0.0'
+    implementation 'com.google.firebase:firebase-core:16.0.0'
 }
+apply plugin: 'com.google.gms.google-services'

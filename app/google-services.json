@@ -1,0 +1,59 @@
+{
+  "project_info": {
+    "project_number": "134363095599",
+    "firebase_url": "https://synapse-network.firebaseio.com",
+    "project_id": "synapse-network",
+    "storage_bucket": "synapse-network.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:134363095599:android:1b10b83f2761cfc7",
+        "android_client_info": {
+          "package_name": "tech.synapsenetwork.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "134363095599-h1ig656ldqg93vnirb96f9ss3dc1ette.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tech.synapsenetwork.app",
+            "certificate_hash": "e80bde3b62e31fa71fd8a7e7d8aa6b29f14108c3"
+          }
+        },
+        {
+          "client_id": "134363095599-qlvivssqc88grct9f8kekkn653ppc8en.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "134363095599-qlvivssqc88grct9f8kekkn653ppc8en.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBST5Bv2cjalKy2ure5XMR1lMTl1oWErPs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "134363095599-qlvivssqc88grct9f8kekkn653ppc8en.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

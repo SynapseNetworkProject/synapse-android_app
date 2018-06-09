@@ -15,6 +15,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.firebase.iid.FirebaseInstanceId;
+
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -59,7 +61,7 @@ public class HomeActivity extends BaseActivity {
         //viewModel.transactions().observe(this, this::onTransactions);
 
         setListener();
-
+        Log.d("firebase", FirebaseInstanceId.getInstance().getToken() + "");
     }
 
     private void setListener() {
