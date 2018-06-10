@@ -39,6 +39,7 @@ import tech.synapsenetwork.app.entity.ErrorEnvelope;
 import tech.synapsenetwork.app.entity.NetworkInfo;
 import tech.synapsenetwork.app.entity.Wallet;
 import tech.synapsenetwork.app.service.FCMTokenService;
+import tech.synapsenetwork.app.service.NotifyService;
 import tech.synapsenetwork.app.service.UpdateFCMTokenService;
 import tech.synapsenetwork.app.util.CreateQRImage;
 import tech.synapsenetwork.app.viewmodel.TransactionsViewModel;
@@ -51,6 +52,11 @@ public class HomeActivity extends BaseActivity {
 
     @Inject
     FCMTokenService fcmTokenService;
+
+    @Inject
+    NotifyService notifyService;
+
+    private String walletAddress;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -118,6 +124,13 @@ public class HomeActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(v.getContext(), StyledDialogsActivity.class));
+            }
+        });
+
+        findViewById(R.id.noti).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                call();
             }
         });
     }
@@ -197,9 +210,10 @@ public class HomeActivity extends BaseActivity {
     }
 
     private void onDefaultWallet(Wallet wallet) {
+        walletAddress = wallet.address;
         showQrImage(wallet);
-        updateFCMToken(wallet.address);
-        Log.d("address", wallet.address);
+        updateFCMToken();
+        Log.d("address", walletAddress);
     }
 
     private void onDefaultNetwork(NetworkInfo networkInfo) {
@@ -207,11 +221,11 @@ public class HomeActivity extends BaseActivity {
     }
 
 
-    private void updateFCMToken(String address) {
+    private void updateFCMToken() {
 
         String fcmToken = FirebaseInstanceId.getInstance().getToken();
 
-        Observable<String> responseObservable = fcmTokenService.updateToken(address, fcmToken);
+        Observable<String> responseObservable = fcmTokenService.updateToken(walletAddress, fcmToken);
 
         List<Observable<?>> observableList = new ArrayList<>();
         observableList.add(responseObservable);
@@ -228,6 +242,51 @@ public class HomeActivity extends BaseActivity {
                 .subscribe(new Observer<Object[]>() {
                     @Override
                     public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Object[] responseObject) {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        e.printStackTrace();
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+
+    private void call() {
+
+        String fromAddress = walletAddress;
+        String toAddress = walletAddress;
+        String notifyType = "CALL";
+
+        Observable<String> responseObservable = notifyService.notify(fromAddress, toAddress, notifyType);
+
+        List<Observable<?>> observableList = new ArrayList<>();
+        observableList.add(responseObservable);
+
+        Observable.zip(observableList,
+                new Function<Object[], Object[]>() {
+                    @Override
+                    public Object[] apply(Object[] objects) throws Exception {
+                        return objects;
+                    }
+                }
+        ).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Object[]>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
                     }
 
                     @Override

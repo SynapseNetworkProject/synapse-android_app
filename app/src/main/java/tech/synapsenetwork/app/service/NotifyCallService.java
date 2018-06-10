@@ -15,20 +15,18 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.GET;
 import retrofit2.http.POST;
-import retrofit2.http.Query;
 import tech.synapsenetwork.app.Constants;
 
 
-public class UpdateFCMTokenService implements FCMTokenService {
+public class NotifyCallService implements NotifyService {
 
 
     private final OkHttpClient httpClient;
     private final Gson gson;
     private ApiClient apiClient;
 
-    public UpdateFCMTokenService(
+    public NotifyCallService(
             OkHttpClient httpClient,
             Gson gson) {
         this.httpClient = httpClient;
@@ -47,9 +45,9 @@ public class UpdateFCMTokenService implements FCMTokenService {
     }
 
     @Override
-    public Observable<String> updateToken(String address, String token) {
+    public Observable<String> notify(String fromAddress, String toAddress, String notifyType) {
         return apiClient
-                .updateToken(address, token)
+                .updateToken(fromAddress, toAddress, notifyType)
                 .lift(apiError())
                 .map(r -> r.response)
                 .subscribeOn(Schedulers.io());
@@ -62,11 +60,11 @@ public class UpdateFCMTokenService implements FCMTokenService {
 
     public interface ApiClient {
         @FormUrlEncoded
-        @POST("/update_fcm_token.php")
-        Observable<Response<UpdateFCMResponse>> updateToken(@Field("address") String address, @Field("token") String token);
+        @POST("/notify.php")
+        Observable<Response<NotifyResponse>> updateToken(@Field("from_address") String fromAddress, @Field("to_address") String toAddress, @Field("notify_type") String notifyType);
     }
 
-    private static class UpdateFCMResponse {
+    private static class NotifyResponse {
         String response;
     }
 

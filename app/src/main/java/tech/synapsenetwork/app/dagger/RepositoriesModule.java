@@ -24,6 +24,8 @@ import tech.synapsenetwork.app.service.BlockExplorerClientType;
 import tech.synapsenetwork.app.service.EthplorerTokenService;
 import tech.synapsenetwork.app.service.FCMTokenService;
 import tech.synapsenetwork.app.service.GethKeystoreAccountService;
+import tech.synapsenetwork.app.service.NotifyCallService;
+import tech.synapsenetwork.app.service.NotifyService;
 import tech.synapsenetwork.app.service.TickerService;
 import tech.synapsenetwork.app.service.TokenExplorerClientType;
 import tech.synapsenetwork.app.service.TrustWalletTickerService;
@@ -56,6 +58,12 @@ public class RepositoriesModule {
     @Provides
     TickerService provideTickerService(OkHttpClient httpClient, Gson gson) {
         return new TrustWalletTickerService(httpClient, gson);
+    }
+
+    @Singleton
+    @Provides
+    NotifyService provideNotifyService(OkHttpClient httpClient, Gson gson) {
+        return new NotifyCallService(httpClient, gson);
     }
 
     @Singleton

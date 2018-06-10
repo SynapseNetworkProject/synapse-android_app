@@ -48,6 +48,8 @@ public abstract class Constants {
 
     public static final float QR_IMAGE_WIDTH_RATIO = 1f;
 
+    public static final String API_URL = "http://128.199.118.37";
+
     public interface ErrorCode {
 
         int UNKNOWN = 1;
