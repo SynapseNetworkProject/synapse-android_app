@@ -17,17 +17,29 @@ import android.widget.Toast;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
 
 import dagger.android.AndroidInjection;
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
+import retrofit2.Response;
 import tech.synapsenetwork.app.Constants;
 import tech.synapsenetwork.app.R;
 import tech.synapsenetwork.app.chat.StyledDialogsActivity;
 import tech.synapsenetwork.app.entity.ErrorEnvelope;
 import tech.synapsenetwork.app.entity.NetworkInfo;
 import tech.synapsenetwork.app.entity.Wallet;
+import tech.synapsenetwork.app.service.FCMTokenService;
+import tech.synapsenetwork.app.service.UpdateFCMTokenService;
 import tech.synapsenetwork.app.util.CreateQRImage;
 import tech.synapsenetwork.app.viewmodel.TransactionsViewModel;
 import tech.synapsenetwork.app.viewmodel.TransactionsViewModelFactory;
@@ -37,6 +49,8 @@ public class HomeActivity extends BaseActivity {
     TransactionsViewModelFactory transactionsViewModelFactory;
     private TransactionsViewModel viewModel;
 
+    @Inject
+    FCMTokenService fcmTokenService;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -184,6 +198,7 @@ public class HomeActivity extends BaseActivity {
 
     private void onDefaultWallet(Wallet wallet) {
         showQrImage(wallet);
+        updateFCMToken(wallet.address);
         Log.d("address", wallet.address);
     }
 
@@ -191,5 +206,45 @@ public class HomeActivity extends BaseActivity {
         Log.d("networkInfo", networkInfo.name);
     }
 
+
+    private void updateFCMToken(String address) {
+
+        String fcmToken = FirebaseInstanceId.getInstance().getToken();
+
+        Observable<String> responseObservable = fcmTokenService.updateToken(address, fcmToken);
+
+        List<Observable<?>> observableList = new ArrayList<>();
+        observableList.add(responseObservable);
+
+        Observable.zip(observableList,
+                new Function<Object[], Object[]>() {
+                    @Override
+                    public Object[] apply(Object[] objects) throws Exception {
+                        return objects;
+                    }
+                }
+        ).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Object[]>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                    }
+
+                    @Override
+                    public void onNext(Object[] responseObject) {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        e.printStackTrace();
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
 
 }

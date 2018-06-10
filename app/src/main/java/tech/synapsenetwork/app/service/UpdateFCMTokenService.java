@@ -13,7 +13,10 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 
@@ -46,9 +49,9 @@ public class UpdateFCMTokenService implements FCMTokenService {
     @Override
     public Observable<String> updateToken(String address, String token) {
         return apiClient
-                .fetchTickerPrice(address, token)
+                .updateToken(address, token)
                 .lift(apiError())
-                .map(r -> r.response[0])
+                .map(r -> r.response)
                 .subscribeOn(Schedulers.io());
     }
 
@@ -58,12 +61,13 @@ public class UpdateFCMTokenService implements FCMTokenService {
     }
 
     public interface ApiClient {
-        @GET("/update_fcm_token.php?address={address}&fcm_token={token}")
-        Observable<Response<UpdateFCMResponse>> fetchTickerPrice(@Query("address") String address, @Query("token") String token);
+        @FormUrlEncoded
+        @POST("/update_fcm_token.php")
+        Observable<Response<UpdateFCMResponse>> updateToken(@Field("address") String address, @Field("token") String token);
     }
 
     private static class UpdateFCMResponse {
-        String[] response;
+        String response;
     }
 
     private final static class ApiErrorOperator<T> implements ObservableOperator<T, Response<T>> {
