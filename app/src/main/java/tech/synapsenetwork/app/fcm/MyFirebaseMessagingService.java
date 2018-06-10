@@ -44,30 +44,18 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
 
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, "channel_id")
-                .setContentTitle(notification.getTitle())
-                .setContentText(notification.getBody())
+                //.setContentTitle(notification.getTitle())
+                //.setContentText(notification.getBody())
                 .setAutoCancel(true)
                 .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
                 .setContentIntent(pendingIntent)
-                .setContentInfo(notification.getTitle())
+                //.setContentInfo(notification.getTitle())
                 .setLargeIcon(icon)
                 .setColor(Color.RED)
                 .setLights(Color.RED, 1000, 300)
                 .setDefaults(Notification.DEFAULT_VIBRATE)
                 .setSmallIcon(R.mipmap.ic_launcher);
 
-        try {
-            String picture_url = data.get("picture_url");
-            if (picture_url != null && !"".equals(picture_url)) {
-                URL url = new URL(picture_url);
-                Bitmap bigPicture = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-                notificationBuilder.setStyle(
-                        new NotificationCompat.BigPictureStyle().bigPicture(bigPicture).setSummaryText(notification.getBody())
-                );
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -86,6 +74,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             notificationManager.createNotificationChannel(channel);
         }
 
-        notificationManager.notify(0, notificationBuilder.build());
+        //notificationManager.notify(0, notificationBuilder.build());
+        startActivity(new Intent(this, HomeActivity.class));
     }
 }

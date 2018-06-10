@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="tech.synapsenetwork.app">
 
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -98,6 +100,8 @@
             android:label="@string/title_send_settings" />
         <activity
             android:name="tech.synapsenetwork.app.ui.HomeActivity"
+            android:showOnLockScreen="true"
+            android:showWhenLocked="true"
             android:label="@string/title_home" />
 
         <activity
@@ -120,6 +124,8 @@
             android:name=".chat.CustomMediaMessagesActivity"
             android:label="@string/title_home"
             android:theme="@style/AppTheme" />
+
+        <receiver android:name=".chat.MyWakefulReceiver"></receiver>
 
         <meta-data
             android:name="io.fabric.ApiKey"

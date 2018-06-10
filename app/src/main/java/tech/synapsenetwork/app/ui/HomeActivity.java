@@ -1,9 +1,12 @@
 package tech.synapsenetwork.app.ui;
 
+import android.Manifest;
+import android.app.KeyguardManager;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -12,6 +15,8 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -31,6 +36,8 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
+import pub.devrel.easypermissions.AfterPermissionGranted;
+import pub.devrel.easypermissions.EasyPermissions;
 import retrofit2.Response;
 import tech.synapsenetwork.app.Constants;
 import tech.synapsenetwork.app.R;
@@ -57,6 +64,8 @@ public class HomeActivity extends BaseActivity {
     NotifyService notifyService;
 
     private String walletAddress;
+    private static final int RC_CALL = 111;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -82,6 +91,40 @@ public class HomeActivity extends BaseActivity {
 
         setListener();
         Log.d("firebase", FirebaseInstanceId.getInstance().getToken() + "");
+
+        requestPermission();
+
+    }
+
+    private void wakeLock() {
+
+
+        PowerManager.WakeLock wakeLock;
+        PowerManager pwm = (PowerManager) getSystemService(POWER_SERVICE);
+        //wakeLock = pwm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP, getClass().getSimpleName());
+        //wakeLock.acquire();
+
+        boolean isScreenOn = pwm.isScreenOn();
+        if (isScreenOn == false) {
+            PowerManager.WakeLock wl = pwm.newWakeLock(PowerManager.FULL_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP | PowerManager.ON_AFTER_RELEASE, "MyLock");
+            wl.acquire(10000);
+            PowerManager.WakeLock wl_cpu = pwm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "MyCpuLock");
+
+            wl_cpu.acquire(10000);
+        }
+
+        //KeyguardManager.KeyguardLock lock;
+        //KeyguardManager keyguardManager = (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
+        //lock = keyguardManager.newKeyguardLock(getClass().getSimpleName());
+        //lock.disableKeyguard();
+
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+        //requestWindowFeature(Window.FEATURE_NO_TITLE);
     }
 
     private void setListener() {
@@ -140,6 +183,7 @@ public class HomeActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         viewModel.prepare();
+        wakeLock();
     }
 
     @Override
@@ -304,6 +348,23 @@ public class HomeActivity extends BaseActivity {
 
                     }
                 });
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
+
+    @AfterPermissionGranted(RC_CALL)
+    private void requestPermission() {
+        String[] perms = {Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO, Manifest.permission.DISABLE_KEYGUARD};
+        if (EasyPermissions.hasPermissions(this, perms)) {
+
+        } else {
+            EasyPermissions.requestPermissions(this, "Need some permissions", RC_CALL, perms);
+        }
     }
 
 }

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 import tech.synapsenetwork.app.Constants;
@@ -40,7 +41,7 @@ public class AppRTCMainActivity extends AppCompatActivity {
 
     @AfterPermissionGranted(RC_CALL)
     private void connect() {
-        String[] perms = {Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO};
+        String[] perms = {Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO, Manifest.permission.DISABLE_KEYGUARD};
         if (EasyPermissions.hasPermissions(this, perms)) {
             connectToRoom(binding.roomEdittext.getText().toString());
         } else {
